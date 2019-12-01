@@ -4,7 +4,10 @@
     <head>
         <title>the war calculator</title>
         <meta name = "viewport" content = "width = device-width, initial-scale = 1"/>
-        <meta http-equiv = "Content-Type" content = "text/html; charset = utf-8"/> 
+        <meta http-equiv = "Content-Type" content = "text/html; charset = utf-8"/>
+        
+        <link rel = "stylesheet" href = "styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
         
     </head>
     
@@ -43,7 +46,7 @@
                 var top = choose (52 - number_of_winners (card_thrown), number_players);
                 var bottom = choose (52, number_players);
 
-                return 100 * (top / bottom);
+                return Math.round (100000 * (top / bottom)) / 1000;
             }
             
             
