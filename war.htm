@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>the war calculator</title>
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1"/>
+        <meta http-equiv = "Content-Type" content = "text/html; charset = utf-8"/> 
+        
+    </head>
+    
+    <body>
+        <h1>the war calculator</h1>
+        
+        <form id = "the_only_form">
+            Number of players:<br>
+            <input type = "text" name = "players"><br><br>
+            
+            Card Thrown:<br>
+            <input type = "text" name = "card">
+        </form><br>
+
+        <button onclick="myFunction ()">calculate win percentage!</button>
+
+        <p id="result"></p>
+        
+        
+        <script>
+            const result = document.getElementById ("result");
+            
+            function myFunction (number_of_players, card_thrown)
+            {
+                var form = document.forms["the_only_form"];
+                var number_of_players = form.elements[0].value;
+                var card_thrown = form.elements[1].value;
+                result.innerHTML = number_of_players + card_thrown;
+            }
+            
+        </script>
+    
+    </body>
+    
+</html>
