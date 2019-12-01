@@ -19,7 +19,7 @@
             <input type = "text" name = "card">
         </form><br>
 
-        <button onclick="myFunction ()">calculate win percentage!</button>
+        <button onclick="main_function ()">calculate win percentage!</button>
 
         <p id="result"></p>
         
@@ -27,12 +27,102 @@
         <script>
             const result = document.getElementById ("result");
             
-            function myFunction (number_of_players, card_thrown)
+            function main_function ()
             {
                 var form = document.forms["the_only_form"];
-                var number_of_players = form.elements[0].value;
-                var card_thrown = form.elements[1].value;
-                result.innerHTML = number_of_players + card_thrown;
+                
+                var number_of_players = parseInt (form.elements[0].value, 10);
+                var card_thrown = input_to_card (form.elements[1].value.toLowerCase ());
+                
+                result.innerHTML = "win percentage: " + war_calculator (number_of_players - 1, card_thrown) + "%";
+            }
+            
+            
+            function war_calculator (number_players, card_thrown)
+            {
+                var top = choose (52 - number_of_winners (card_thrown), number_players);
+                var bottom = choose (52, number_players);
+
+                return 100 * (top / bottom);
+            }
+            
+            
+            function factorial (input)
+            {
+                var result = input;
+                
+                if (input === 0 || input === 1)
+                    return 1;
+                else
+                {
+                    while (input > 1)
+                    {
+                        input--;
+                        result *= input;
+                    }
+                    
+                    return result;
+                }
+            }
+                        
+            
+            function choose (n, k)
+            {
+                var output = factorial (n) / (factorial (k) * factorial (n - k));
+                return output;
+            }
+            
+            
+            function number_of_winners (input)
+            {
+                switch (input)
+                {
+                    case 1:
+                        return 4;
+                        break;
+                        
+                    case 2:
+                        return 48;
+                        break;
+                        
+                    default:
+                        return (14 - input) * 4;
+                }
+            }
+            
+                
+            function input_to_card (input)
+            {
+                switch (input)
+                {
+                    case "1":
+                    case "14":
+                    case "a":
+                    case "ace":
+                        return 1;
+                        break;
+                        
+                    case "11":
+                    case "j":
+                    case "jack":
+                        return 11;
+                        break;
+                        
+                    case "12":
+                    case "q":
+                    case "queen":
+                        return 12;
+                        break;
+                        
+                    case "13":
+                    case "k":
+                    case "king":
+                        return 13;
+                        break;
+                        
+                    default:
+                        return parseInt (input, 10);
+                }
             }
             
         </script>
