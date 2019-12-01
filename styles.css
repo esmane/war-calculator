@@ -6,6 +6,7 @@ body
     font-size: 20px;
 }
 
+
 input
 {
     padding: 8px 8px;
@@ -18,6 +19,35 @@ input
     font-family: 'Raleway', sans-serif;
     font-size: 16px;
     
-    border: 2px solid #888;
-    border-radius: 8px;
+    border: 2px solid #999;
+    border-radius: 6px;
+}
+
+input:focus
+{
+    border: 2px solid #FFF;
+}
+
+
+button
+{
+    background-color: #FFF;
+    color: #000;
+    
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+}
+
+button:hover
+{
+    background-color: #DDD;
+}
+
+button:active
+{
+    transform: translateY(2px);
 }
