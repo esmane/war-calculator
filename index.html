@@ -37,16 +37,38 @@
                 var number_of_players = parseInt (form.elements[0].value, 10);
                 var card_thrown = input_to_card (form.elements[1].value.toLowerCase ());
                 
-                result.innerHTML = "win percentage: " + war_calculator (number_of_players - 1, card_thrown) + "%";
+                if (card_thrown < 1 || card_thrown > 13)
+                    result.innerHTML = "error - not a card";
+                else
+                {
+                    if (number_of_players < 2)
+                        result.innerHTML = "error - not enough players";
+                    else
+                    {
+                        if (number_of_players > 52)
+                            result.innerHTML = "woah woah woah wayyy too many players!";
+                        else
+                            result.innerHTML = "win percentage: " + war_calculator (number_of_players - 1, card_thrown) + "%";
+                    }
+                }
             }
             
             
             function war_calculator (number_players, card_thrown)
             {
-                var top = choose (52 - number_of_winners (card_thrown), number_players);
-                var bottom = choose (52, number_players);
+                if (card_thrown === 2)
+                {
+                    var top = choose (48, number_players);
+                    var bottom = choose (52, number_players);
+                    return Math.round (10000 * (1 - (top / bottom))) / 100;
+                }
+                else
+                {
+                    var top = choose (52 - number_of_winners (card_thrown), number_players);
+                    var bottom = choose (52, number_players);
 
-                return Math.round (10000 * (top / bottom)) / 100;
+                    return Math.round (10000 * (top / bottom)) / 100;
+                }
             }
             
             
@@ -68,7 +90,7 @@
                 }
             }
                         
-            
+
             function choose (n, k)
             {
                 var output = factorial (n) / (factorial (k) * factorial (n - k));
@@ -84,8 +106,8 @@
                         return 4;
                         break;
                         
-                    case 2:
-                        return 44;
+                    case 3:
+                        return 48;
                         break;
                         
                     default:
